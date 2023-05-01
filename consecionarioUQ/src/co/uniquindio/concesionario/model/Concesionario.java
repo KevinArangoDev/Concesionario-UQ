@@ -1,10 +1,12 @@
 package co.uniquindio.concesionario.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import co.uniquindio.concesionario.exceptions.ClienteException;
+import co.uniquindio.concesionario.exceptions.VehiculoException;
 
 public class Concesionario {
 
@@ -14,6 +16,13 @@ public class Concesionario {
 	private String nombre;
 	private String direccion;
 	private Persona[] listaPersonas;
+	private Cliente[] listaClientes;
+	private Empleado[] listaEmpleados;
+	private Vehiculo[] listaVehiculos;
+	private List<Vehiculo> vehiculosLivianos;
+    private List<Vehiculo> vehiculosPesados;
+    private List<Vehiculo> vehiculosMotos;
+
 
 
 	/**
@@ -23,6 +32,9 @@ public class Concesionario {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
+		this.vehiculosLivianos = new ArrayList<>();
+        this.vehiculosPesados = new ArrayList<>();
+        this.vehiculosMotos = new ArrayList<>();
 	}
 	/**
 	 * Getters and Setters
@@ -99,6 +111,40 @@ public class Concesionario {
 		return -1;
 	}
 
+	public void registrarVehiculo(Vehiculo newVehiculo) throws VehiculoException {
+		int posDisponible = 0;
+		Vehiculo vehiculo = buscarVehiculo(newVehiculo);
+
+		if (vehiculo != null) {
+            throw new VehiculoException("El vehículo ya ha sido registrado.");
+        }
+		if (newVehiculo.getIdVehiculo().equals("liviano")) {
+			vehiculosLivianos.add(newVehiculo);
+        } else if (newVehiculo.getIdVehiculo().equals("pesado")) {
+        	vehiculosPesados.add(newVehiculo);
+        } else if (newVehiculo.getIdVehiculo().equals("moto")) {
+        	vehiculosMotos.add(newVehiculo);
+        }
+		posDisponible = obtenerPosicionListaVehiculo();
+		listaVehiculos [posDisponible ] = newVehiculo;
+	}
+	private Vehiculo buscarVehiculo(Vehiculo newVehiculo) {
+		List<Vehiculo> asList = Arrays.asList(listaVehiculos);
+		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo)).findFirst();
+		return findFirst.get();
+	}
+	private int obtenerPosicionListaVehiculo() {
+		for(int i = 0 ; i<= listaVehiculos.length ;i++){
+			if (listaVehiculos[i] == null){
+				return i ;
+			}
+		}
+		return -1;
+	}
 
 
+
+
+	//obtener la lista de contacto, donde el telefono de contacto sea un numero capicua	usar la funcion filter de los strings
+	//estudiar lamdad
 }
