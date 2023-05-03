@@ -1,10 +1,12 @@
 package co.uniquindio.concesionario.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import co.uniquindio.concesionario.exceptions.ClienteException;
+import co.uniquindio.concesionario.exceptions.VehiculoException;
 
 public class Concesionario {
 
@@ -14,6 +16,13 @@ public class Concesionario {
 	private String nombre;
 	private String direccion;
 	private Persona[] listaPersonas;
+	private Cliente[] listaClientes;
+	private Empleado[] listaEmpleados;
+	private Vehiculo[] listaVehiculos;
+	private List<Vehiculo> vehiculosLivianos;
+    private List<Vehiculo> vehiculosPesados;
+    private List<Vehiculo> vehiculosMotos;
+
 
 
 	/**
@@ -23,6 +32,9 @@ public class Concesionario {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
+		this.vehiculosLivianos = new ArrayList<>();
+        this.vehiculosPesados = new ArrayList<>();
+        this.vehiculosMotos = new ArrayList<>();
 	}
 	/**
 	 * Getters and Setters
@@ -101,4 +113,6 @@ public class Concesionario {
  // jhkjjk kj
 
 
+	//obtener la lista de contacto, donde el telefono de contacto sea un numero capicua	usar la funcion filter de los strings
+	//estudiar lamdad
 }
