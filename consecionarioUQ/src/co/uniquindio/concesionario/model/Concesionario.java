@@ -23,7 +23,7 @@ public class Concesionario {
     private List<Vehiculo> vehiculosPesados;
     private List<Vehiculo> vehiculosMotos;
 // prueba1
-
+    //prueba2
 
 	/**
 	 * Constructor
