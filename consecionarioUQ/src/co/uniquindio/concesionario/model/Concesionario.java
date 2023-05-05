@@ -130,7 +130,7 @@ public class Concesionario {
 	}
 	private Vehiculo buscarVehiculo(Vehiculo newVehiculo) {
 		List<Vehiculo> asList = Arrays.asList(listaVehiculos);
-		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo)).findFirst();
+		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo.getIdVehiculo())).findFirst();
 		return findFirst.get();
 	}
 	private int obtenerPosicionListaVehiculo() {
