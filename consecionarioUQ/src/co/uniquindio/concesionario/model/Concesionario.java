@@ -22,7 +22,7 @@ public class Concesionario {
 	private List<Vehiculo> vehiculosLivianos;
     private List<Vehiculo> vehiculosPesados;
     private List<Vehiculo> vehiculosMotos;
-
+// prueba1
 
 
 	/**
