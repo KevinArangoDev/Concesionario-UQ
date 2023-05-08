@@ -24,7 +24,6 @@ public class Concesionario {
     private List<Vehiculo> vehiculosMotos;
 // prueba1
     //prueba3
-    //hgjjh
 
 	/**
 	 * Constructor
