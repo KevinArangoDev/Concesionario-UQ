@@ -86,53 +86,54 @@ public class Concesionario {
 		return "Concesionario [nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 
-	public void registrarPersona(Persona newPersona) throws ClienteException {
+	public void registrarCliente(Cliente newCliente) throws ClienteException {
 
-		Persona persona = buscarPersona(newPersona);
+		Cliente cliente = buscarCliente(newCliente);
 		int posDisponible = 0;
-		if(persona != null){
+		if(cliente != null){
 			throw new ClienteException("El cliente ya existe");
 		}
 		posDisponible = obtenerPosicion();
-		listaPersonas[posDisponible] = newPersona;
+		listaClientes[posDisponible] = newCliente;
 	}
 
-	private Persona buscarPersona(Persona newPersona) {
-		List<Persona> asList = Arrays.asList(listaPersonas);
-		Optional<Persona> findFirst = asList.stream().filter(c -> c.equals(newPersona)).findFirst();
+	private Cliente buscarCliente(Cliente newCliente) {
+		List<Cliente> asList = Arrays.asList(listaClientes);
+		Optional<Cliente> findFirst = asList.stream().filter(c -> c.equals(newCliente)).findFirst();
 		return findFirst.get();
 	}
 	private int obtenerPosicion() {
-		for(int i = 0 ; i<= listaPersonas.length ;i++){
-			if (listaPersonas[i] == null){
+		for(int i = 0 ; i<= listaClientes.length ;i++){
+			if (listaClientes[i] == null){
 				return i ;
 			}
 		}
 		return -1;
 	}
 
+	/**
+	 * Este metodo nos ayuda a registrar un vehiculo, primero compara el Id del vehiculo y si coincide
+	 * con algun vehiculo del consecionario arroja un exception con el mensaje de que ya fue registrado
+	 * si no existe el carro lo agrega a la lista de vehiculos en la posicion disponible.
+	 * @param newVehiculo
+	 * @throws VehiculoException
+	 */
 	public void registrarVehiculo(Vehiculo newVehiculo) throws VehiculoException {
-		int posDisponible = 0;
-		Vehiculo vehiculo = buscarVehiculo(newVehiculo);
-
-		if (vehiculo != null) {
-            throw new VehiculoException("El vehículo ya ha sido registrado.");
-        }
-		if (newVehiculo.getIdVehiculo().equals("liviano")) {
-			vehiculosLivianos.add(newVehiculo);
-        } else if (newVehiculo.getIdVehiculo().equals("pesado")) {
-        	vehiculosPesados.add(newVehiculo);
-        } else if (newVehiculo.getIdVehiculo().equals("moto")) {
-        	vehiculosMotos.add(newVehiculo);
-        }
-		posDisponible = obtenerPosicionListaVehiculo();
-		listaVehiculos [posDisponible ] = newVehiculo;
+	    int posDisponible = obtenerPosicionListaVehiculo();
+	    Vehiculo vehiculo;
+	    for (int i = 0; i < posDisponible; i++) {
+	        vehiculo = listaVehiculos[i];
+	        if (vehiculo.getIdVehiculo().equals(newVehiculo.getIdVehiculo())) {
+	            throw new VehiculoException("El vehículo ya ha sido registrado.");
+	        }
+	    }
+	    listaVehiculos[posDisponible] = newVehiculo;
 	}
-	private Vehiculo buscarVehiculo(Vehiculo newVehiculo) {
-		List<Vehiculo> asList = Arrays.asList(listaVehiculos);
-		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo.getIdVehiculo())).findFirst();
-		return findFirst.get();
-	}
+//	private Vehiculo buscarVehiculo(Vehiculo newVehiculo) {
+//		List<Vehiculo> asList = Arrays.asList(listaVehiculos);
+//		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo.getIdVehiculo())).findFirst();
+//		return findFirst.get();
+//	}
 	private int obtenerPosicionListaVehiculo() {
 		for(int i = 0 ; i<= listaVehiculos.length ;i++){
 			if (listaVehiculos[i] == null){
@@ -141,6 +142,8 @@ public class Concesionario {
 		}
 		return -1;
 	}
+
+
 
 
 
