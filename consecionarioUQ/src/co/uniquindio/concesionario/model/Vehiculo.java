@@ -1,6 +1,6 @@
 package co.uniquindio.concesionario.model;
 
-public class Vehiculo {
+public abstract class Vehiculo {
 
 		//Attributes
 		private String marca;
