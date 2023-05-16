@@ -93,6 +93,22 @@ public class Concesionario {
 			return false;
 		return true;
 	}
+	public void agregarVehiculo(Vehiculo vehiculo)  {
+		int bandera = 0;
+		for (int i = 0; i < listaVehiculos.size() && bandera == 0; i++) {
+			if (listaVehiculos.get(i).getPlaca().equals(vehiculo.getPlaca())) {
+				bandera = 1;
+			}
+		}
+		if (bandera == 0) {
+			listaVehiculos.add(vehiculo);
+		//	Persistencia.guardarVehiculo(listaVehiculos);
+			System.out.println("Se agrego un nuevo vehiculo .");
+		} else {
+			System.out.println("Este vehiculo ya existe");
+		}
+
+	}
 
 
 

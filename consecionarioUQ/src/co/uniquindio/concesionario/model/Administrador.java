@@ -26,7 +26,7 @@ public class Administrador extends Persona {
 	public String toString() {
 		return "Administrador [sueldo=" + sueldo + "]";
 	}
-	
-	
+
+
 
 }
