@@ -1,6 +1,6 @@
 package co.uniquindio.concesionario.model;
 
-public class Persona {
+public abstract class Persona {
 
 	/**
 	 * Atributos

@@ -1,5 +1,6 @@
 package co.uniquindio.concesionario.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,10 @@ public class Empleado extends Persona {
 	 */
 	private String cargo;
 	private double sueldo;
-	private Cliente[] listaClientes;
-
-
+	private ArrayList<Cliente> listaClientes;
+	
 	/**
-	 * Constructor
+	 * constructor de la clase Empleado
 	 * @param nombre
 	 * @param edad
 	 * @param id
@@ -29,11 +29,9 @@ public class Empleado extends Persona {
 		this.cargo = cargo;
 		this.sueldo = sueldo;
 	}
-
-	/**
-	 * Getters and Setters
-	 * @return
-	 */
+	public Empleado(String nombre, String edad, String id) {
+		super(nombre, edad, id);
+	}
 	public String getCargo() {
 		return cargo;
 	}
@@ -46,48 +44,19 @@ public class Empleado extends Persona {
 	public void setSueldo(double sueldo) {
 		this.sueldo = sueldo;
 	}
-	public Cliente[] getListaClientes() {
+	public ArrayList<Cliente> getListaClientes() {
 		return listaClientes;
 	}
-
-	public void setListaClientes(Cliente[] listaClientes) {
+	public void setListaClientes(ArrayList<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
 	}
-
-
-
-	/**
-	 * Este metodo nos ayuda a registrar un cliente, verificando si este ya existe,
-	 * si existe lanza un exception, si no lo ubica en una posicion disponible en la lista
-	 * @param newCliente
-	 * @throws ClienteException
-	 */
-	public void registrarCliente(Cliente newCliente) throws ClienteException {
-
-		Cliente cliente = buscarCliente(newCliente);
-		int posDisponible = 0;
-		if(cliente != null){
-			throw new ClienteException("El cliente ya existe");
-		}
-		posDisponible = obtenerPosicion();
-		listaClientes[posDisponible] = newCliente;
+	@Override
+	public String toString() {
+		return "Empleado [cargo=" + cargo + ", sueldo=" + sueldo + ", listaClientes=" + listaClientes + "]";
 	}
-
-	private Cliente buscarCliente(Cliente newCliente) {
-		List<Cliente> asList = Arrays.asList(listaClientes);
-		Optional<Cliente> findFirst = asList.stream().filter(c -> c.equals(newCliente)).findFirst();
-		return findFirst.get();
-	}
-	private int obtenerPosicion() {
-		for(int i = 0 ; i<= listaClientes.length ;i++){
-			if (listaClientes[i] == null){
-				return i ;
-			}
-		}
-		return -1;
-	}
-
-
+	
+	
+	
 
 
 
