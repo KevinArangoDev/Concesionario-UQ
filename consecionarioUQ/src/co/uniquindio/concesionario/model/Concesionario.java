@@ -110,6 +110,26 @@ public class Concesionario {
 
 	}
 
+	public void eliminarVeviculo(Vehiculo vehiculo)  {
+
+		String idVehiculo = vehiculo.getPlaca();
+
+		for (int i = 0; i < listaVehiculos.size(); i++) {
+			if (listaVehiculos.get(i).getPlaca().equals(idVehiculo)) {
+				listaVehiculos.remove(i);
+
+				System.out.println("Se elimino el vehiculo.");
+				//Persistencia.guardarCliente(listaClientes);
+				break;
+			}else{
+				System.out.println("no existe un vehiculo con esa id");
+
+			}
+
+		}
+	}
+
+
 
 
 

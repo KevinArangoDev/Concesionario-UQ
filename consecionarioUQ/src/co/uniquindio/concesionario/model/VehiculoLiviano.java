@@ -7,7 +7,7 @@ public abstract class VehiculoLiviano  extends Carro{
 	private boolean sensorColision;
 	private  boolean sensorTraficoCruzado;
 	private boolean asisPermCarril;
-	
+
 	/**
 	 * Constructor de la clase VehiculoLiviano y los demas atributos de su superclase
 	 * @param tipoCombustible
@@ -51,13 +51,13 @@ public abstract class VehiculoLiviano  extends Carro{
 		super(tipoCombustible, tipoTrasmision, tipoNuevoUsado, marca, modelo, cambios, velMax, cilindraje, numPasajeros,
 				placa, numPuertas, capMaletero, hasAireAcondicionado, hasCamaraReversa, hasABS, numBolsasAire);
 	}
-	
+
 	/**
 	 * Getters and Setters  , to String
 	 * @return
 	 */
-	
-//----------------------------------------------------------------------	
+
+//----------------------------------------------------------------------
 	public boolean isVelCrucero() {
 		return velCrucero;
 	}

@@ -105,6 +105,7 @@ public abstract class Carro  extends Vehiculo{
 	public String toString() {
 		return "Carro [numPuertas=" + numPuertas + ", capMaletero=" + capMaletero + ", hasAireAcondicionado="
 				+ hasAireAcondicionado + ", hasCamaraReversa=" + hasCamaraReversa + ", hasABS=" + hasABS
+
 				+ ", numBolsasAire=" + numBolsasAire + "]";
 	}
 

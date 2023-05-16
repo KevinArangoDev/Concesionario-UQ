@@ -1,13 +1,15 @@
 package co.uniquindio.concesionario.exceptions;
 
-public class ConcesionarioException  extends Exception{
+public class EmpleadoExceptions extends Exception{
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ConcesionarioException(String mensaje){
+	public EmpleadoExceptions( String mensaje) {
 		super(mensaje);
 	}
+
 
 }
