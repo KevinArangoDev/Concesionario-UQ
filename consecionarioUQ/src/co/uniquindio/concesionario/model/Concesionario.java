@@ -15,31 +15,15 @@ public class Concesionario {
 	 */
 	private String nombre;
 	private String direccion;
-	private Persona[] listaPersonas;
-	private Cliente[] listaClientes;
-	private Empleado[] listaEmpleados;
-	private Vehiculo[] listaVehiculos;
-	private List<Vehiculo> vehiculosLivianos;
-    private List<Vehiculo> vehiculosPesados;
-    private List<Vehiculo> vehiculosMotos;
-
-
-
-	/**
-	 * Constructor
-	 */
+	private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	private ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
+	private ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+	private ArrayList<Transaccion> listaTransacciones = new ArrayList<Transaccion>();
 	public Concesionario(String nombre, String direccion) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.vehiculosLivianos = new ArrayList<>();
-        this.vehiculosPesados = new ArrayList<>();
-        this.vehiculosMotos = new ArrayList<>();
 	}
-	/**
-	 * Getters and Setters
-	 * @return
-	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -51,6 +35,34 @@ public class Concesionario {
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public ArrayList<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+	public void setListaClientes(ArrayList<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+	public ArrayList<Empleado> getListaEmpleados() {
+		return listaEmpleados;
+	}
+	public void setListaEmpleados(ArrayList<Empleado> listaEmpleados) {
+		this.listaEmpleados = listaEmpleados;
+	}
+	public ArrayList<Vehiculo> getListaVehiculos() {
+		return listaVehiculos;
+	}
+	public void setListaVehiculos(ArrayList<Vehiculo> listaVehiculos) {
+		this.listaVehiculos = listaVehiculos;
+	}
+	public ArrayList<Transaccion> getListaTransacciones() {
+		return listaTransacciones;
+	}
+	public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
+		this.listaTransacciones = listaTransacciones;
+	}
+	@Override
+	public String toString() {
+		return "Concesionario [nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -81,66 +93,40 @@ public class Concesionario {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Concesionario [nombre=" + nombre + ", direccion=" + direccion + "]";
-	}
-
-	public void registrarCliente(Cliente newCliente) throws ClienteException {
-
-		Cliente cliente = buscarCliente(newCliente);
-		int posDisponible = 0;
-		if(cliente != null){
-			throw new ClienteException("El cliente ya existe");
-		}
-		posDisponible = obtenerPosicion();
-		listaClientes[posDisponible] = newCliente;
-	}
-
-	private Cliente buscarCliente(Cliente newCliente) {
-		List<Cliente> asList = Arrays.asList(listaClientes);
-		Optional<Cliente> findFirst = asList.stream().filter(c -> c.equals(newCliente)).findFirst();
-		return findFirst.get();
-	}
-	private int obtenerPosicion() {
-		for(int i = 0 ; i<= listaClientes.length ;i++){
-			if (listaClientes[i] == null){
-				return i ;
+	public void agregarVehiculo(Vehiculo vehiculo)  {
+		int bandera = 0;
+		for (int i = 0; i < listaVehiculos.size() && bandera == 0; i++) {
+			if (listaVehiculos.get(i).getPlaca().equals(vehiculo.getPlaca())) {
+				bandera = 1;
 			}
 		}
-		return -1;
-	}
-
-	/**
-	 * Este metodo nos ayuda a registrar un vehiculo, primero compara el Id del vehiculo y si coincide
-	 * con algun vehiculo del consecionario arroja un exception con el mensaje de que ya fue registrado
-	 * si no existe el carro lo agrega a la lista de vehiculos en la posicion disponible.
-	 * @param newVehiculo
-	 * @throws VehiculoException
-	 */
-	public void registrarVehiculo(Vehiculo newVehiculo) throws VehiculoException {
-	    int posDisponible = obtenerPosicionListaVehiculo();
-	    Vehiculo vehiculo;
-	    for (int i = 0; i < posDisponible; i++) {
-	        vehiculo = listaVehiculos[i];
-	        if (vehiculo.getIdVehiculo().equals(newVehiculo.getIdVehiculo())) {
-	            throw new VehiculoException("El vehículo ya ha sido registrado.");
-	        }
-	    }
-	    listaVehiculos[posDisponible] = newVehiculo;
-	}
-//	private Vehiculo buscarVehiculo(Vehiculo newVehiculo) {
-//		List<Vehiculo> asList = Arrays.asList(listaVehiculos);
-//		Optional<Vehiculo> findFirst = asList.stream().filter(c -> c.equals(newVehiculo.getIdVehiculo())).findFirst();
-//		return findFirst.get();
-//	}
-	private int obtenerPosicionListaVehiculo() {
-		for(int i = 0 ; i<= listaVehiculos.length ;i++){
-			if (listaVehiculos[i] == null){
-				return i ;
-			}
+		if (bandera == 0) {
+			listaVehiculos.add(vehiculo);
+		//	Persistencia.guardarVehiculo(listaVehiculos);
+			System.out.println("Se agrego un nuevo vehiculo .");
+		} else {
+			System.out.println("Este vehiculo ya existe");
 		}
-		return -1;
+
+	}
+
+	public void eliminarVeviculo(Vehiculo vehiculo)  {
+
+		String idVehiculo = vehiculo.getPlaca();
+
+		for (int i = 0; i < listaVehiculos.size(); i++) {
+			if (listaVehiculos.get(i).getPlaca().equals(idVehiculo)) {
+				listaVehiculos.remove(i);
+
+				System.out.println("Se elimino el vehiculo.");
+				//Persistencia.guardarCliente(listaClientes);
+				break;
+			}else{
+				System.out.println("no existe un vehiculo con esa id");
+
+			}
+
+		}
 	}
 
 
@@ -148,6 +134,4 @@ public class Concesionario {
 
 
 
-	//obtener la lista de contacto, donde el telefono de contacto sea un numero capicua	usar la funcion filter de los strings
-	//estudiar lamdad
 }

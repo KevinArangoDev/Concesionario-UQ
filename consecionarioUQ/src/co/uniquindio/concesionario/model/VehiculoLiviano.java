@@ -1,80 +1,68 @@
 package co.uniquindio.concesionario.model;
-
-public class VehiculoLiviano extends Vehiculo implements deCeroACien {
-
+public abstract class VehiculoLiviano  extends Carro{
 	/**
-	 * Atributos
+	 * Declaracion de atributos
 	 */
-	private boolean esCuatroPorCuatro;
+	private boolean velCrucero;
 	private boolean sensorColision;
-	private boolean sensorTraficocruzado;
-	private boolean asistPermCarril;
-	private boolean esEnchufable;
-	private boolean esHibridoLigero;
-	private double	tiempoDecarga;
-	private double  caballosDeFuerza;
-	private String  autonomiaCargaCompleta;
-	private double coeficienteDeArrastre;
-	private double peso;
-
+	private  boolean sensorTraficoCruzado;
+	private boolean asisPermCarril;
 
 	/**
-	 *
+	 * Constructor de la clase VehiculoLiviano y los demas atributos de su superclase
+	 * @param tipoCombustible
+	 * @param tipoTrasmision
+	 * @param tipoNuevoUsado
 	 * @param marca
-	 * @param idVehiculo
 	 * @param modelo
 	 * @param cambios
+	 * @param velMax
 	 * @param cilindraje
 	 * @param numPasajeros
+	 * @param placa
 	 * @param numPuertas
-	 * @param numBolsasDeAire
-	 * @param velocidadMaxima
-	 * @param tieneAbs
-	 * @param tieneCamaraReversa
-	 * @param esCuatroPorCuatro
+	 * @param capMaletero
+	 * @param hasAireAcondicionado
+	 * @param hasCamaraReversa
+	 * @param hasABS
+	 * @param numBolsasAire
+	 * @param velCrucero
 	 * @param sensorColision
-	 * @param sensorTraficocruzado
-	 * @param asistPermCarril
-	 * @param esEnchufable
-	 * @param esHibridoLigero
-	 * @param tiempoDecarga
-	 * @param caballosDeFuerza
-	 * @param autonomiaCargaCompleta
-	 * @param coeficienteDeArrastre
-	 * @param peso
+	 * @param sensorTraficoCruzado
+	 * @param asisPermCarril
 	 */
-	public VehiculoLiviano(String marca, String idVehiculo, String modelo, String cambios, String cilindraje,
-			String numPasajeros, String numPuertas, String numBolsasDeAire, double velocidadMaxima, boolean tieneAbs,
-			boolean tieneCamaraReversa, boolean esCuatroPorCuatro, boolean sensorColision, boolean sensorTraficocruzado,
-			boolean asistPermCarril, boolean esEnchufable, boolean esHibridoLigero, double tiempoDecarga,
-			double caballosDeFuerza, String autonomiaCargaCompleta, double coeficienteDeArrastre, double peso) {
-		super(marca, idVehiculo, modelo, cambios, cilindraje, numPasajeros, numPuertas, numBolsasDeAire,
-				velocidadMaxima, tieneAbs, tieneCamaraReversa);
-		this.esCuatroPorCuatro = esCuatroPorCuatro;
+	public VehiculoLiviano(TipoCombustible tipoCombustible, TipoTrasmision tipoTrasmision,
+			TipoNuevoUsado tipoNuevoUsado, String marca, String modelo, String cambios, Double velMax,
+			String cilindraje, String numPasajeros, String placa, String numPuertas, String capMaletero,
+			boolean hasAireAcondicionado, boolean hasCamaraReversa, boolean hasABS, String numBolsasAire,
+			boolean velCrucero, boolean sensorColision, boolean sensorTraficoCruzado, boolean asisPermCarril) {
+		super(tipoCombustible, tipoTrasmision, tipoNuevoUsado, marca, modelo, cambios, velMax, cilindraje, numPasajeros,
+				placa, numPuertas, capMaletero, hasAireAcondicionado, hasCamaraReversa, hasABS, numBolsasAire);
+		this.velCrucero = velCrucero;
 		this.sensorColision = sensorColision;
-		this.sensorTraficocruzado = sensorTraficocruzado;
-		this.asistPermCarril = asistPermCarril;
-		this.esEnchufable = esEnchufable;
-		this.esHibridoLigero = esHibridoLigero;
-		this.tiempoDecarga = tiempoDecarga;
-		this.caballosDeFuerza = caballosDeFuerza;
-		this.autonomiaCargaCompleta = autonomiaCargaCompleta;
-		this.coeficienteDeArrastre = coeficienteDeArrastre;
-		this.peso = peso;
+		this.sensorTraficoCruzado = sensorTraficoCruzado;
+		this.asisPermCarril = asisPermCarril;
+	}
+	//constructor vacio
+	public VehiculoLiviano(TipoCombustible tipoCombustible, TipoTrasmision tipoTrasmision,
+			TipoNuevoUsado tipoNuevoUsado, String marca, String modelo, String cambios, Double velMax,
+			String cilindraje, String numPasajeros, String placa, String numPuertas, String capMaletero,
+			boolean hasAireAcondicionado, boolean hasCamaraReversa, boolean hasABS, String numBolsasAire) {
+		super(tipoCombustible, tipoTrasmision, tipoNuevoUsado, marca, modelo, cambios, velMax, cilindraje, numPasajeros,
+				placa, numPuertas, capMaletero, hasAireAcondicionado, hasCamaraReversa, hasABS, numBolsasAire);
 	}
 
-
-
 	/**
-	 * Getters and Setters
+	 * Getters and Setters  , to String
 	 * @return
 	 */
 
-	public boolean isEsCuatroPorCuatro() {
-		return esCuatroPorCuatro;
+//----------------------------------------------------------------------
+	public boolean isVelCrucero() {
+		return velCrucero;
 	}
-	public void setEsCuatroPorCuatro(boolean esCuatroPorCuatro) {
-		this.esCuatroPorCuatro = esCuatroPorCuatro;
+	public void setVelCrucero(boolean velCrucero) {
+		this.velCrucero = velCrucero;
 	}
 	public boolean isSensorColision() {
 		return sensorColision;
@@ -82,84 +70,24 @@ public class VehiculoLiviano extends Vehiculo implements deCeroACien {
 	public void setSensorColision(boolean sensorColision) {
 		this.sensorColision = sensorColision;
 	}
-
-	public boolean isSensorTraficocruzado() {
-		return sensorTraficocruzado;
+	public boolean isSensorTraficoCruzado() {
+		return sensorTraficoCruzado;
 	}
-
-	public void setSensorTraficocruzado(boolean sensorTraficocruzado) {
-		this.sensorTraficocruzado = sensorTraficocruzado;
+	public void setSensorTraficoCruzado(boolean sensorTraficoCruzado) {
+		this.sensorTraficoCruzado = sensorTraficoCruzado;
 	}
-
-	public boolean isAsistPermCarril() {
-		return asistPermCarril;
+	public boolean isAsisPermCarril() {
+		return asisPermCarril;
 	}
-
-	public void setAsistPermCarril(boolean asistPermCarril) {
-		this.asistPermCarril = asistPermCarril;
+	public void setAsisPermCarril(boolean asisPermCarril) {
+		this.asisPermCarril = asisPermCarril;
 	}
-
-	public boolean isEsEnchufable() {
-		return esEnchufable;
-	}
-	public void setEsEnchufable(boolean esEnchufable) {
-		this.esEnchufable = esEnchufable;
-	}
-	public boolean isEsHibridoLigero() {
-		return esHibridoLigero;
-	}
-	public void setEsHibridoLigero(boolean esHibridoLigero) {
-		this.esHibridoLigero = esHibridoLigero;
-	}
-	public double getTiempoDecarga() {
-		return tiempoDecarga;
-	}
-	public void setTiempoDecarga(double tiempoDecarga) {
-		this.tiempoDecarga = tiempoDecarga;
-	}
-	public double getCaballosDeFuerza() {
-		return caballosDeFuerza;
-	}
-	public void setCaballosDeFuerza(double caballosDeFuerza) {
-		this.caballosDeFuerza = caballosDeFuerza;
-	}
-	public String getAutonomiaCargaCompleta() {
-		return autonomiaCargaCompleta;
-	}
-	public void setAutonomiaCargaCompleta(String autonomiaCargaCompleta) {
-		this.autonomiaCargaCompleta = autonomiaCargaCompleta;
-	}
-	public double getCoeficienteDeArrastre() {
-		return coeficienteDeArrastre;
-	}
-	public void setCoeficienteDeArrastre(double coeficienteDeArrastre) {
-		this.coeficienteDeArrastre = coeficienteDeArrastre;
-	}
-	public double getPeso() {
-		return peso;
-	}
-	public void setPeso(double peso) {
-		this.peso = peso;
-	}
-
 	@Override
 	public String toString() {
-		return "VehiculoLiviano [esCuatroPorCuatro=" + esCuatroPorCuatro + ", sensorColision=" + sensorColision
-				+ ", sensorTraficocruzado=" + sensorTraficocruzado + ", asistPermCarril=" + asistPermCarril
-				+ ", esEnchufable=" + esEnchufable + ", esHibridoLigero=" + esHibridoLigero + ", tiempoDecarga="
-				+ tiempoDecarga + ", caballosDeFuerza=" + caballosDeFuerza + ", autonomiaCargaCompleta="
-				+ autonomiaCargaCompleta + ", coeficienteDeArrastre=" + coeficienteDeArrastre + ", peso=" + peso + "]";
+		return "VehiculoLiviano [velCrucero=" + velCrucero + ", sensorColision=" + sensorColision
+				+ ", sensorTraficoCruzado=" + sensorTraficoCruzado + ", asisPermCarril=" + asisPermCarril + "]";
 	}
-
-
-
-
-
-	@Override
-	public double calcularTiempoDe100KmPorHora() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+//------------------------------------------------------------------------------------------------	
+	
 
 }
