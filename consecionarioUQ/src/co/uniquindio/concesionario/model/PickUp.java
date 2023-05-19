@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public class PickUp extends Carro {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class PickUp extends Carro implements Serializable{
 	
 	/**
 	 * Declaracion de atributos
