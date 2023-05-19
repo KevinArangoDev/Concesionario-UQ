@@ -14,41 +14,22 @@ public class Administrador extends Persona implements Serializable {
 	private String contrasenia;
 
 
-	/**
-	 * Constructor de la clase administrador con los atributos de su superclase persona
-	 * @param nombre
-	 * @param edad
-	 * @param id
-	 * @param sueldo
-	 * @param listaEmpleados
-	 */
 
-	public Administrador(String nombre, String edad, String id, double sueldo, ArrayList<Empleado> listaEmpleados) {
+
+
+
+	public Administrador(String nombre, String edad, String id, double sueldo, String contrasenia) {
 		super(nombre, edad, id);
 		this.sueldo = sueldo;
-		this.listaEmpleados = listaEmpleados;
-
+		this.contrasenia = contrasenia;
 	}
 
-	//constructor vacio
 	public Administrador(String nombre, String edad, String id) {
 		super(nombre, edad, id);
-
-
 	}
 
 	public Administrador() {
 		super();
-	}
-
-	public Administrador(String nombre, String edad, String id, double sueldo) {
-		super(nombre, edad, id);
-
-
-	}
-	// constructor login
-	public Administrador( String id, String contrasenia) {
-		this.contrasenia = contrasenia;
 	}
 
 	/**

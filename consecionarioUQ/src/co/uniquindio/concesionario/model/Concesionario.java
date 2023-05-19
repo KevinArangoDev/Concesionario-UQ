@@ -130,9 +130,7 @@
 				return false;
 			return true;
 		}
-		public void crearAdministrador(){
-			listaAdministradores.add(new Administrador( "vxvxv",  "43",  "ddd",  456.0));
-		}
+
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 																							// CRUD VEHICULO
 		/**
@@ -479,9 +477,13 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 		// login administrador
-		public Administrador iniciarSesionAdministrador(String administrador, String contrasenia)
+
+		public void crearAdministrador(){
+			listaAdministradores.add(new Administrador("kevin","19","1058",4000 ,"123"));
+		}
+		public Administrador iniciarSesionAdministrador(String idAdmin, String contrasenia)
 				throws FileNotFoundException, IOException, AdministradorException {
-			Administrador administradorIS = validarAdministrador(administrador, contrasenia);
+			Administrador administradorIS = validarAdministrador(idAdmin, contrasenia);
 			if (administradorIS != null) {
 				return administradorIS;
 			} else {
@@ -490,13 +492,13 @@
 
 		}
 
-		private Administrador validarAdministrador(String administrador, String contrasenia)
+		private Administrador validarAdministrador(String idAdmin, String contrasenia)
 				throws FileNotFoundException, IOException {
 			ArrayList<Administrador> administradores = listaAdministradores;
 
 			for (int indiceAdministrador = 0; indiceAdministrador < administradores.size(); indiceAdministrador++) {
 				Administrador adminAux = administradores.get(indiceAdministrador);
-				if (adminAux.getId().equalsIgnoreCase(administrador)
+				if (adminAux.getId().equals(idAdmin)
 						&& adminAux.getContrasenia().equalsIgnoreCase(contrasenia)) {
 					return adminAux;
 				}

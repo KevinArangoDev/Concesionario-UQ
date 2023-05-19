@@ -62,9 +62,9 @@ public class ModelFactoryController {
 			this.administrador = administrador;
 		}
 
-		public Administrador registrarEmpleado(Administrador administrador , Empleado empleado) throws IOException {
+		public void registrarEmpleado(Administrador administrador , Empleado empleado) throws IOException {
 
-			return concesionario.agregarEmpleado(administrador, empleado);
+//			return concesionario.agregarEmpleado(administrador, empleado);
 
 		}
 		/*
@@ -79,9 +79,19 @@ public class ModelFactoryController {
 			}
 			return false;
 		}
+		public boolean inicioSesionAdministrador(String idAdmin, String contrasenia) throws AdministradorException {
+			try {
+				this.administrador = concesionario.iniciarSesionAdministrador(idAdmin, contrasenia);
+
+				return administrador != null;
+
+			} catch (IOException | AdministradorException e) {
+				e.printStackTrace();
+			}
+			return false;
 
 
-
+		}
 
 
 }
