@@ -1,4 +1,5 @@
 package co.uniquindio.concesionario.model;
+@SuppressWarnings("serial")
 public abstract class VehiculoLiviano  extends Carro{
 	/**
 	 * Declaracion de atributos
@@ -87,7 +88,6 @@ public abstract class VehiculoLiviano  extends Carro{
 		return "VehiculoLiviano [velCrucero=" + velCrucero + ", sensorColision=" + sensorColision
 				+ ", sensorTraficoCruzado=" + sensorTraficoCruzado + ", asisPermCarril=" + asisPermCarril + "]";
 	}
-//------------------------------------------------------------------------------------------------	
-	
+//------------------------------------------------------------------------------------------------
 
 }

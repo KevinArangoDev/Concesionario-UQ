@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public abstract class Persona {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class Persona implements Serializable{
 
 	/**
 	 * Atributos

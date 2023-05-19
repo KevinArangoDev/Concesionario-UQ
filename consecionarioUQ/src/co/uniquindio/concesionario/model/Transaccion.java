@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public class Transaccion {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Transaccion implements Serializable{
 	
 
 }

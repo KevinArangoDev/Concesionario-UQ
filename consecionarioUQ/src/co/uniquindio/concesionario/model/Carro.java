@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public abstract class Carro  extends Vehiculo{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class Carro  extends Vehiculo implements Serializable{
 
 
 	/**
@@ -108,6 +111,17 @@ public abstract class Carro  extends Vehiculo{
 
 				+ ", numBolsasAire=" + numBolsasAire + "]";
 	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
