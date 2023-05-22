@@ -178,7 +178,7 @@ public class AdministradorController {
     }
 
     @FXML
-    void agregarEmpleado(ActionEvent event) {
+    void abrirVentAgregarEmpleado(ActionEvent event) {
 
     }
 

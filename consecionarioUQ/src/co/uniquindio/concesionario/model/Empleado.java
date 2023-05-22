@@ -29,7 +29,7 @@ public class Empleado extends Persona implements Serializable{
 	 * @param cargo
 	 * @param sueldo
 	 */
-	public Empleado(String nombre, String edad, String id, String cargo, double sueldo, EstadoEmpleado estadoEmpleado  , String apellido){
+	public Empleado(String nombre, String edad, String id, String cargo, double sueldo  , String apellido){
 		super(nombre, edad, id , apellido);
 		this.cargo = cargo;
 		this.sueldo = sueldo;
