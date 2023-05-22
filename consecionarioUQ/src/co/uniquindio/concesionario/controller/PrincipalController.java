@@ -46,7 +46,7 @@ public class PrincipalController  implements Initializable{
     				getClass().getResource("/co/uniquindio/concesionario/view/loginAdministradorView.fxml"));
     		Parent root = loader.load();
 
-    		VentanaAdministradorController controlador = loader.getController();
+    		LoginAdministradorController controlador = loader.getController();
 
     		Scene scene = new Scene(root);
     		Stage stage = new Stage();

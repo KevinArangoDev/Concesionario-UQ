@@ -12,43 +12,23 @@ public class Administrador extends Persona implements Serializable {
 	private double sueldo;
 	private ArrayList<Empleado> listaEmpleados;
 	private String contrasenia;
+	private static final String USUARIO_ADMIN = "admin";
+    private static final String CONTRASENA_ADMIN = "123456";
 
 
-	/**
-	 * Constructor de la clase administrador con los atributos de su superclase persona
-	 * @param nombre
-	 * @param edad
-	 * @param id
-	 * @param sueldo
-	 * @param listaEmpleados
-	 */
 
-	public Administrador(String nombre, String edad, String id, double sueldo, ArrayList<Empleado> listaEmpleados) {
-		super(nombre, edad, id);
+
+
+
+
+	public Administrador(String nombre, String edad, String id, double sueldo, String contrasenia , String apellido) {
+		super(nombre, edad, id , apellido);
 		this.sueldo = sueldo;
-		this.listaEmpleados = listaEmpleados;
-
-	}
-
-	//constructor vacio
-	public Administrador(String nombre, String edad, String id) {
-		super(nombre, edad, id);
-
-
-	}
-
-	public Administrador() {
-		super();
-	}
-
-	public Administrador(String nombre, String edad, String id, double sueldo) {
-		super(nombre, edad, id);
-
-
-	}
-	// constructor login
-	public Administrador( String id, String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+		public Administrador() {
+		super();
 	}
 
 	/**
@@ -85,6 +65,16 @@ public class Administrador extends Persona implements Serializable {
 	 */
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+
+
+
+
+
+	public static boolean verificarCredenciales(String usuario, String contrasena) {
+		return usuario.equals(USUARIO_ADMIN) && contrasena.equals(CONTRASENA_ADMIN);
+
 	}
 
 //-----------------------------------------------------------------------------------------------

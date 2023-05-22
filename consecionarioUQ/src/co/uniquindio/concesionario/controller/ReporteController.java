@@ -1,5 +1,5 @@
 package co.uniquindio.concesionario.controller;
 
-public class VentanaAdministradorController {
+public class ReporteController {
 
 }
