@@ -29,8 +29,8 @@ public class Empleado extends Persona implements Serializable{
 	 * @param cargo
 	 * @param sueldo
 	 */
-	public Empleado(String nombre, String edad, String id, String cargo, double sueldo, EstadoEmpleado estadoEmpleado ){
-		super(nombre, edad, id);
+	public Empleado(String nombre, String edad, String id, String cargo, double sueldo, EstadoEmpleado estadoEmpleado  , String apellido){
+		super(nombre, edad, id , apellido);
 		this.cargo = cargo;
 		this.sueldo = sueldo;
 		this.estadoEmpleado = EstadoEmpleado.ACTIVO;
@@ -38,8 +38,8 @@ public class Empleado extends Persona implements Serializable{
 	}
 
 	// constructor vacio
-	public Empleado(String nombre, String edad, String id) {
-		super(nombre, edad, id);
+	public Empleado(String nombre, String edad, String id , String apellido) {
+		super(nombre, edad, id , apellido);
 	}
 	public Empleado() {
 		super();

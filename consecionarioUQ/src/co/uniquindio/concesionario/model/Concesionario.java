@@ -430,9 +430,9 @@
 		 * @throws EmpleadoExceptions
 		 */
 
-		public boolean actualizarCliente(String nombre, String edad , String id , String direccion , String telefono) throws EmpleadoExceptions{
+		public boolean actualizarCliente(String nombre, String edad , String id , String direccion , String telefono , String apellido) throws EmpleadoExceptions{
 //			if(estadoEmpleado==EstadoEmpleado.ACTIVO){
-				Cliente clienteAct = new Cliente(nombre, edad, id, direccion, telefono);
+				Cliente clienteAct = new Cliente(nombre, edad, id, direccion, telefono , apellido);
 				if (id != null) {
 					for (int i = 0; i < listaClientes.size(); i++) {
 						if (listaClientes.get(i).getId().equals(id)) {
@@ -478,33 +478,41 @@
 //-----------------------------------------------------------------------------------------------------------------------------------------------
 		// login administrador
 
-		public void crearAdministrador(){
-			listaAdministradores.add(new Administrador("kevin","19","1058",4000 ,"123"));
-		}
-		public Administrador iniciarSesionAdministrador(String idAdmin, String contrasenia)
-				throws FileNotFoundException, IOException, AdministradorException {
-			Administrador administradorIS = validarAdministrador(idAdmin, contrasenia);
-			if (administradorIS != null) {
-				return administradorIS;
-			} else {
-				throw new AdministradorException("Usuario no existe");
-			}
 
+		public boolean iniciarSesionAdministrador(String usuario, String contrasena){
+			if (Administrador.verificarCredenciales(usuario, contrasena)) {
+	            // Login exitoso
+	            System.out.println("Bienvenido, administrador!");
+	            return true;
+	        } else {
+	            // Credenciales incorrectas
+	            System.out.println("Credenciales incorrectas. Acceso denegado.");
+	            return false;
+	        }
 		}
-
-		private Administrador validarAdministrador(String idAdmin, String contrasenia)
-				throws FileNotFoundException, IOException {
-			ArrayList<Administrador> administradores = listaAdministradores;
-
-			for (int indiceAdministrador = 0; indiceAdministrador < administradores.size(); indiceAdministrador++) {
-				Administrador adminAux = administradores.get(indiceAdministrador);
-				if (adminAux.getId().equals(idAdmin)
-						&& adminAux.getContrasenia().equalsIgnoreCase(contrasenia)) {
-					return adminAux;
-				}
-			}
-			return null;
-		}
+//				throws FileNotFoundException, IOException, AdministradorException {
+//			Administrador administradorIS = validarAdministrador(idAdmin, contrasenia);
+//			if (administradorIS != null) {
+//				return administradorIS;
+//			} else {
+//				throw new AdministradorException("Usuario no existe");
+//			}
+//
+//		}
+//
+//		private Administrador validarAdministrador(String idAdmin, String contrasenia)
+//				throws FileNotFoundException, IOException {
+//			ArrayList<Administrador> administradores = listaAdministradores;
+//
+//			for (int i = 0; i < administradores.size(); i++) {
+//				Administrador adminAux = administradores.get(i);
+//				if (adminAux.getId().equals(idAdmin)
+//						&& adminAux.getContrasenia().equalsIgnoreCase(contrasenia)) {
+//					return adminAux;
+//				}
+//			}
+//			return null;
+//		}
 
 		public Administrador CargarAdministrador(String idUsuario) throws IOException {
 

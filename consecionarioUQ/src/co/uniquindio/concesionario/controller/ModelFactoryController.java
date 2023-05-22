@@ -12,7 +12,7 @@ public class ModelFactoryController {
 	//Atributos
 	Concesionario concesionario;
 	Empleado empleado;
-	Administrador administrador;
+	boolean administrador;
 	private static class SingletonHolder {
 		// El constructor de Singleton puede ser llamado desde aqui al ser
 		// protected
@@ -54,11 +54,11 @@ public class ModelFactoryController {
 			this.empleado = empleado;
 		}
 
-		public Administrador getAdministrador() {
+		public boolean getAdministrador() {
 			return administrador;
 		}
 
-		public void setAdministrador(Administrador administrador) {
+		public void setAdministrador(boolean administrador) {
 			this.administrador = administrador;
 		}
 
@@ -71,27 +71,17 @@ public class ModelFactoryController {
 		 * Metodo que permite iniciar la sesion del comprador
 		 */
 		public boolean inicioSesionAdmin(String id, String contrasenia) {
-			try {
-				this.administrador = concesionario.iniciarSesionAdministrador(id, contrasenia);
-				return administrador != null;
-			} catch (IOException | AdministradorException e) {
-				e.printStackTrace();
+			this.administrador = concesionario.iniciarSesionAdministrador(id, contrasenia);
+			if(concesionario.iniciarSesionAdministrador(id, contrasenia)== true){
+				return true;
 			}
-			return false;
-		}
-		public boolean inicioSesionAdministrador(String idAdmin, String contrasenia) throws AdministradorException {
-			try {
-				this.administrador = concesionario.iniciarSesionAdministrador(idAdmin, contrasenia);
 
-				return administrador != null;
-
-			} catch (IOException | AdministradorException e) {
-				e.printStackTrace();
-			}
 			return false;
 
-
 		}
+
+
+
 
 
 }

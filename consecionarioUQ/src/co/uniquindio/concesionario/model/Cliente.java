@@ -14,8 +14,8 @@ public class Cliente extends Persona implements Serializable {
 	/**
 	 * Constructor
 	 */
-	public Cliente(String nombre, String edad, String id, String direccion, String telefono) {
-		super(nombre, edad, id);
+	public Cliente(String nombre, String edad, String id, String direccion, String telefono , String apellido) {
+		super(nombre, edad, id,apellido);
 		this.direccion = direccion;
 		this.telefono = telefono;
 	}

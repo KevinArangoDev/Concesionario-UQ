@@ -11,6 +11,7 @@ public abstract class Persona implements Serializable{
 	private String nombre;
 	private String edad;
 	private String id;
+	private String apellido;
 
 
 	/**
@@ -19,14 +20,17 @@ public abstract class Persona implements Serializable{
 	 * @param edad
 	 * @param id
 	 */
-	public Persona(String nombre, String edad, String id) {
+
+	public Persona() {
+		super();
+	}
+
+	public Persona(String nombre, String edad, String id, String apellido) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
 		this.id = id;
-	}
-	public Persona() {
-		super();
+		this.apellido = apellido;
 	}
 
 	/**
@@ -83,6 +87,18 @@ public abstract class Persona implements Serializable{
 	@Override
 	public String toString() {
 		return "Persona [nombre=" + nombre + ", edad=" + edad + ", id=" + id + "]";
+	}
+	/**
+	 * @return the apellido
+	 */
+	public String getApellido() {
+		return apellido;
+	}
+	/**
+	 * @param apellido the apellido to set
+	 */
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 

@@ -12,23 +12,22 @@ public class Administrador extends Persona implements Serializable {
 	private double sueldo;
 	private ArrayList<Empleado> listaEmpleados;
 	private String contrasenia;
+	private static final String USUARIO_ADMIN = "admin";
+    private static final String CONTRASENA_ADMIN = "123456";
 
 
 
 
 
 
-	public Administrador(String nombre, String edad, String id, double sueldo, String contrasenia) {
-		super(nombre, edad, id);
+
+	public Administrador(String nombre, String edad, String id, double sueldo, String contrasenia , String apellido) {
+		super(nombre, edad, id , apellido);
 		this.sueldo = sueldo;
 		this.contrasenia = contrasenia;
 	}
 
-	public Administrador(String nombre, String edad, String id) {
-		super(nombre, edad, id);
-	}
-
-	public Administrador() {
+		public Administrador() {
 		super();
 	}
 
@@ -66,6 +65,16 @@ public class Administrador extends Persona implements Serializable {
 	 */
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+
+
+
+
+
+	public static boolean verificarCredenciales(String usuario, String contrasena) {
+		return usuario.equals(USUARIO_ADMIN) && contrasena.equals(CONTRASENA_ADMIN);
+
 	}
 
 //-----------------------------------------------------------------------------------------------

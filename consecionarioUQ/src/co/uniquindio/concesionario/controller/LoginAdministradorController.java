@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.uniquindio.concesionario.exceptions.AdministradorException;
+import co.uniquindio.concesionario.model.Administrador;
+import co.uniquindio.concesionario.model.Concesionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,15 +34,17 @@ public class LoginAdministradorController implements Initializable {
     private TextField txtIdAdmin;
 
     @FXML
-    private TextField txtContraseniaAdmin;
+    private PasswordField pasworField;
 
     @FXML
     private Button btnIngresar;
+    @FXML
+    private Button btnInicio;
 
     @FXML
     void ingresarVenAdmin(ActionEvent event) {
     	String idAdmin = this.txtIdAdmin.getText();
-		String contrasenia = this.txtContraseniaAdmin.getText();
+		String contrasenia = this.pasworField.getText();
 
 		if (singleton.inicioSesionAdmin(idAdmin ,contrasenia) == true) {
 
@@ -83,13 +88,39 @@ public class LoginAdministradorController implements Initializable {
 //			alert.setContentText("Los datos no coinciden, vuelva a intentarlo.");
 //			alert.showAndWait();
 			try {
-				throw new AdministradorException("Anunciante no existe");
+				throw new AdministradorException("administrador no existe \n                 o     \n contraseña incorrecta");
 			} catch (AdministradorException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("no existe");
+				alert.setContentText(e.getMessage());
+				alert.showAndWait();
 			}
 		}
 
+
+    }
+    @FXML
+    void volverVenPrincipal(ActionEvent event) {
+    	try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("../view/PrincipalView.fxml"));
+			Parent root = loader.load();
+
+//			PrincipalController controlador = loader.getController();
+
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setTitle("Concesionario uq");
+//			stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/Logo Subasta.png")));
+			stage.setScene(scene);
+			stage.show();
+
+			Stage myStage = (Stage) this.btnInicio.getScene().getWindow();
+			myStage.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 
     }
 
