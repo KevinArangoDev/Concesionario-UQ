@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public class Cliente extends Persona {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Atributos

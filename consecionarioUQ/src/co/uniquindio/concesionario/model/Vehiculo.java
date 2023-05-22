@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public abstract class Vehiculo {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public abstract class Vehiculo implements Serializable {
 	/**
 	 * declaracion de atributos
 	 */
@@ -125,7 +128,9 @@ public abstract class Vehiculo {
 				+ ", tipoNuevoUsado=" + tipoNuevoUsado + ", marca=" + marca + ", modelo=" + modelo + ", Cambios="
 				+ Cambios + ", velMax=" + velMax + ", cilindraje=" + cilindraje + ", numPasajeros=" + numPasajeros
 				+ ", placa=" + placa + "]";
-	} 
+	}
+
+
 
 
 

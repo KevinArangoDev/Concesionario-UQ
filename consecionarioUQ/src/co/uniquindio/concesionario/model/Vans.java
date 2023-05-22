@@ -1,5 +1,6 @@
 package co.uniquindio.concesionario.model;
 
+@SuppressWarnings("serial")
 public class Vans extends VehiculoLiviano {
 	/**
 	 * Declaracion atributos

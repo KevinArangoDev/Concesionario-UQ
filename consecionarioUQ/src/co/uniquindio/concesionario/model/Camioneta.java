@@ -1,6 +1,9 @@
 package co.uniquindio.concesionario.model;
 
-public class Camioneta extends VehiculoLiviano{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Camioneta extends VehiculoLiviano implements Serializable{
 	private boolean cuatroXcuatro;
 
 	public Camioneta(TipoCombustible tipoCombustible, TipoTrasmision tipoTrasmision, TipoNuevoUsado tipoNuevoUsado,

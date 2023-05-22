@@ -41,6 +41,11 @@ public class Empleado extends Persona {
 
 
 
+	public Empleado() {
+
+		super();
+		}
+
 	/**
 	 * Getters and setters y metodo to String
 	 * @return
@@ -160,7 +165,7 @@ public class Empleado extends Persona {
 					System.out.println("Se elimino el cliente.");
 					//Persistencia.guardarCliente(listaClientes);
 					break;
-				}else System.out.println("no existe un cliente con esa id");
+				}else System.out.println("No existe un cliente con esa id");
 
 			}
 
