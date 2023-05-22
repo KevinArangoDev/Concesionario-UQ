@@ -11,7 +11,9 @@ import co.uniquindio.concesionario.model.Empleado;
 public class ModelFactoryController {
 	//Atributos
 	Concesionario concesionario;
-	Empleado empleado;
+	Empleado empleado; 
+	Administrador administrador;
+
 	boolean administrador;
 	private static class SingletonHolder {
 		// El constructor de Singleton puede ser llamado desde aqui al ser
@@ -24,7 +26,7 @@ public class ModelFactoryController {
 		}
 
 		public ModelFactoryController() {
-			System.out.println("invocación clase singleton");
+			System.out.println("invocaciÃ³n clase singleton");
 			inicializarDatos();
 		}
 
@@ -54,6 +56,21 @@ public class ModelFactoryController {
 			this.empleado = empleado;
 		}
 
+
+		public Administrador getAdministrador() {
+			return administrador;
+		}
+
+		public void setAdministrador(Administrador administrador) {
+			this.administrador = administrador;
+		}
+
+//		public Administrador registrarEmpleado(Administrador administrador , Empleado empleado) throws IOException {
+//
+//			return concesionario.agregarEmpleado(administrador, empleado);
+//
+//		}
+=======
 		public boolean getAdministrador() {
 			return administrador;
 		}
@@ -67,10 +84,20 @@ public class ModelFactoryController {
 //			return concesionario.agregarEmpleado(administrador, empleado);
 
 		}
+
 		/*
 		 * Metodo que permite iniciar la sesion del comprador
 		 */
 		public boolean inicioSesionAdmin(String id, String contrasenia) {
+
+			try {
+				this.administrador = concesionario.iniciarSesionAdministrador(id, contrasenia);
+				return administrador != null;
+			} catch (IOException | AdministradorException e) {
+				e.printStackTrace();
+			}
+			return false;
+
 			this.administrador = concesionario.iniciarSesionAdministrador(id, contrasenia);
 			if(concesionario.iniciarSesionAdministrador(id, contrasenia)== true){
 				return true;

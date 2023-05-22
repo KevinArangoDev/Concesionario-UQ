@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+
+import com.jfoenix.controls.JFXButton;
 import javax.xml.ws.Service.Mode;
 
 import javafx.event.ActionEvent;
@@ -29,6 +32,10 @@ public class PrincipalController  implements Initializable{
     private URL location;
 
     @FXML
+    private JFXButton btnEmpleado;
+
+    @FXML
+    private JFXButton btnAdministrador;
     private Button btnEmpleado;
 
     @FXML
@@ -43,7 +50,7 @@ public class PrincipalController  implements Initializable{
     	try {
 
     		FXMLLoader loader = new FXMLLoader(
-    				getClass().getResource("/co/uniquindio/concesionario/view/loginAdministradorView.fxml"));
+    				getClass().getResource("../view/loginAdministradorView.fxml"));
     		Parent root = loader.load();
 
     		LoginAdministradorController controlador = loader.getController();
@@ -53,7 +60,6 @@ public class PrincipalController  implements Initializable{
 
     		stage.setScene(scene);
     		stage.show();
-    		stage.setTitle("Lista Facturas");
     		Stage myStage = (Stage) this.btnAdministrador.getScene().getWindow();
     		myStage.close();
 
@@ -66,6 +72,28 @@ public class PrincipalController  implements Initializable{
 
     @FXML
     void venLogEmp(ActionEvent event) {
+
+    	try {
+
+    		FXMLLoader loader = new FXMLLoader(
+    				getClass().getResource("../view/loginEmpleadoView.fxml"));
+    		Parent root = loader.load();
+
+    		LoginEmpleadoController controlador = loader.getController();
+
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+
+    		stage.setScene(scene);
+    		stage.show();
+    		stage.setTitle("Car UQ");
+    		Stage myStage = (Stage) this.btnEmpleado.getScene().getWindow();
+    		myStage.close();
+
+    	} catch (IOException e) {
+
+    	}
+
 
     }
 

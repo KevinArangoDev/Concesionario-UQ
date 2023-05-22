@@ -44,6 +44,7 @@
 			super();
 		}
 
+
 		// ------------------------------------------------------------------------------------------------------
 		// Getters and Setters , toString , hash code , .equals
 
@@ -130,6 +131,9 @@
 				return false;
 			return true;
 		}
+		public void crearAdministrador(){
+			listaAdministradores.add(new Administrador( "vxvxv",  "43",  "ddd",  456.0));
+		}
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------
 																							// CRUD VEHICULO
@@ -166,8 +170,8 @@
 				if (listaVehiculos.get(i).getPlaca().equals(vehiculoActualizado.getPlaca())) {
 					listaVehiculos.set(i, vehiculoActualizado);
 				} else {
-					// Si no se encontr� el veh�culo con el id especificado
-					System.out.println("No se encontr� el veh�culo con esa placa: " + vehiculoActualizado.getPlaca());
+					// Si no se encontró el vehículo con el id especificado
+					System.out.println("No se encontró el vehículo con esa placa: " + vehiculoActualizado.getPlaca());
 
 				}
 			}
@@ -244,8 +248,408 @@
 				if (listaEmpleados.get(i).getId().equals(empleadoActualizado.getId())) {
 					listaEmpleados.set(i, empleadoActualizado);
 				} else {
-					// Si no se encontr� el empleado con el id especificado
-					System.out.println("No se encontr� el empleado con esa id: " + empleadoActualizado.getId());
+					// Si no se encontró el empleado con el id especificado
+					System.out.println("No se encontró el empleado con esa id: " + empleadoActualizado.getId());
+
+				}
+			}
+
+		}
+
+		/**
+		 * metodo utilizado para eliminar un empleado de la lista de empleados
+		 * validando que el empleado existe obteniendo su id
+		 *
+		 * @param cliente
+		 */
+		public void eliminarEmpleado( Empleado empleado) {
+
+			String idEmpleado = empleado.getId();
+
+			for (int i = 0; i < listaEmpleados.size(); i++) {
+				if (listaEmpleados.get(i).getId().equals(idEmpleado)) {
+					listaEmpleados.remove(i);
+
+					System.out.println("Se elimino el empleado.");
+					// Persistencia.guardarCliente(listaClientes);
+					break;
+				} else {
+					System.out.println("no existe un empleado con esa id");
+
+				}
+
+			}
+		}
+
+		/**
+		 * metodo para bloquear un empleado
+		 *
+		 * @param empleado
+		 */
+		public void bloquearEmpleado( Empleado empleado) {
+			String idEmpleado = empleado.getId();
+
+			for (int i = 0; i < listaEmpleados.size(); i++) {
+				if (listaEmpleados.get(i).getId().equals(idEmpleado)) {
+					listaEmpleados.get(i).setEstadoEmpleado(EstadoEmpleado.BLOQUEADO);
+
+					System.out.println("Se bloqueo el empleado. " + getNombre());
+					break;
+				} else {
+					System.out.println("no existe un empleado con esa id");
+
+				}
+
+			}
+
+		}
+//--------------------------------------------------------------------------------------------------------------------------------------------------
+
+																						//CRUD CLIENTE
+//
+//		/**
+//		 * metodo para agregar un cliente a la lista de clientes  , validando si el cliente
+//		 *  ya existe segun su id y verificando si el empleado esta activo
+//		 * @param cliente
+//		 * @throws EmpleadoExceptions
+//		 */
+//
+//		public void agregarCliente(Empleado empleado ,Cliente cliente) throws EmpleadoExceptions  {
+//
+//			if(empleado.getEstadoEmpleado().equals(EstadoEmpleado.ACTIVO)){
+//				int bandera = 0;
+//				for (int i = 0; i < listaClientes.size() && bandera == 0; i++) {
+//					if (listaClientes.get(i).getId().equals(cliente.getId())) {
+//						bandera = 1;
+//					}
+//				}
+//				if (bandera == 0) {
+//					listaClientes.add(cliente);
+//				//	Persistencia.guardarCliente(listaClientes);
+//					System.out.println("Se agrego un nuevo cliente .");
+//				} else {
+//					System.out.println("Este cliente ya existe");
+//				}
+//			}else{
+//				throw new EmpleadoExceptions("este empleado no puede agregar clientes , EMPLEADO BLOQUEADO");
+//
+//			}
+//
+//
+//		}
+//		/**
+//		 * metodo utilizado para actualizar la informacion del cliente que retorna un valor booleando true
+//		 * si el cliente fue actualizadao exitosamente o false si o fue actualizado
+//		 * y verificando si el empleado esta activo
+//		 * @param nombre
+//		 * @param edad
+//		 * @param id
+//		 * @param direccion
+//		 * @param telefono
+//		 * @param listaClientes
+//		 * @return
+//		 * @throws EmpleadoExceptions
+//		 */
+//
+//		public boolean actualizarCliente(Empleado empleado ,String nombre, String edad , String id , String direccion , String telefono) throws EmpleadoExceptions{
+//			if(empleado.getEstadoEmpleado().equals(EstadoEmpleado.ACTIVO)){
+//				Cliente clienteAct = new Cliente(nombre, edad, id, direccion, telefono);
+//				if (id != null) {
+//					for (int i = 0; i < listaClientes.size(); i++) {
+//						if (listaClientes.get(i).getId().equals(id)) {
+//							listaClientes.set(i, clienteAct);
+//
+//							// Guarda en el txt
+//							//Persistencia.guardarComprador(listaClientes);
+//							return true;
+//						}
+//					}
+//				}
+//
+//			}else{
+//				throw new EmpleadoExceptions("el empleado se encuentra bloqueado");
+//			}
+//			return false;
+//		}
+//
+//		/**
+//		 * metodo utilizado para eliminar un cliente de la lista  de clientes   validando que el cliente existe
+//		 * obteniendo su id y verificando si el empleado esta activo
+//		 * @param cliente
+//		 * @throws EmpleadoExceptions
+//		 */
+//
+//		public void eliminarCliente(Empleado empleado ,Cliente cliente) throws EmpleadoExceptions  {
+//			if(empleado.getEstadoEmpleado().equals(EstadoEmpleado.ACTIVO)){
+//				String idCliente = cliente.getId();
+//
+//				for (int i = 0; i < listaClientes.size(); i++) {
+//					if (listaClientes.get(i).getId().equals(idCliente)) {
+//						listaClientes.remove(i);
+//
+//						System.out.println("Se elimino el cliente.");
+//						//Persistencia.guardarCliente(listaClientes);
+//						break;
+//					}else System.out.println("no existe un cliente con esa id");
+//
+//				}
+//
+//			}else throw new EmpleadoExceptions("el empleado se encuentra Bloqueado");
+//
+//
+//		}
+//
+
+		public void agregarCliente(Cliente cliente) throws EmpleadoExceptions  {
+//			if(empleado.estadoEmpleado==EstadoEmpleado.ACTIVO){
+				int bandera = 0;
+				for (int i = 0; i < listaClientes.size() && bandera == 0; i++) {
+					if (listaClientes.get(i).getId().equals(cliente.getId())) {
+						bandera = 1;
+					}
+				}
+				if (bandera == 0) {
+					listaClientes.add(cliente);
+				//	Persistencia.guardarCliente(listaClientes);
+					System.out.println("Se agrego un nuevo cliente .");
+				} else {
+					System.out.println("Este cliente ya existe");
+				}
+			}
+
+
+
+
+
+		/**
+		 * metodo utilizado para actualizar la informacion del cliente que retorna un valor booleando true
+		 * si el cliente fue actualizadao exitosamente o false si o fue actualizado
+		 * y verificando si el empleado esta activo
+		 * @param nombre
+		 * @param edad
+		 * @param id
+		 * @param direccion
+		 * @param telefono
+		 * @param listaClientes
+		 * @return
+		 * @throws EmpleadoExceptions
+		 */
+
+		public boolean actualizarCliente(String nombre, String edad , String id , String direccion , String telefono) throws EmpleadoExceptions{
+//			if(estadoEmpleado==EstadoEmpleado.ACTIVO){
+				Cliente clienteAct = new Cliente(nombre, edad, id, direccion, telefono);
+				if (id != null) {
+					for (int i = 0; i < listaClientes.size(); i++) {
+						if (listaClientes.get(i).getId().equals(id)) {
+							listaClientes.set(i, clienteAct);
+
+							// Guarda en el txt
+							//Persistencia.guardarComprador(listaClientes);
+							return true;
+						}
+					}
+				}
+
+
+			return false;
+		}
+
+		/**
+		 * metodo utilizado para eliminar un cliente de la lista  de clientes   validando que el cliente existe
+		 * obteniendo su id y verificando si el empleado esta activo
+		 * @param cliente
+		 * @throws EmpleadoExceptions
+		 */
+
+		public void eliminarCliente(Cliente cliente) throws EmpleadoExceptions  {
+//			if(estadoEmpleado==EstadoEmpleado.ACTIVO){
+				String idCliente = cliente.getId();
+
+				for (int i = 0; i < listaClientes.size(); i++) {
+					if (listaClientes.get(i).getId().equals(idCliente)) {
+						listaClientes.remove(i);
+
+						System.out.println("Se elimino el cliente.");
+						//Persistencia.guardarCliente(listaClientes);
+						break;
+					}else System.out.println("no existe un cliente con esa id");
+
+				}
+
+			}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------
+		// login administrador
+		public Administrador iniciarSesionAdministrador(String administrador, String contrasenia)
+				throws FileNotFoundException, IOException, AdministradorException {
+			Administrador administradorIS = validarAdministrador(administrador, contrasenia);
+			if (administradorIS != null) {
+				return administradorIS;
+			} else {
+				throw new AdministradorException("Usuario no existe");
+			}
+
+		}
+
+		private Administrador validarAdministrador(String administrador, String contrasenia)
+				throws FileNotFoundException, IOException {
+			ArrayList<Administrador> administradores = listaAdministradores;
+=======
+
+		/**
+		 * metodo para actualizar un vehiculo
+		 *
+		 * @param vehiculoActualizado
+		 */
+		public void actualizarVehiculo(Empleado empleado ,Vehiculo vehiculoActualizado) {
+
+			for (int i = 0; i < listaVehiculos.size(); i++) {
+				if (listaVehiculos.get(i).getPlaca().equals(vehiculoActualizado.getPlaca())) {
+					listaVehiculos.set(i, vehiculoActualizado);
+				} else {
+					// Si no se encontró el vehículo con el id especificado
+					System.out.println("No se encontró el vehículo con esa placa: " + vehiculoActualizado.getPlaca());
+
+				}
+			}
+
+		}
+
+		/**
+		 * metodo utilizado para eliminar un vehiculo
+		 *
+		 * @param vehiculo
+		 */
+		public void eliminarVehiculo(Vehiculo vehiculo) {
+
+			String idVehiculo = vehiculo.getPlaca();
+
+			for (int i = 0; i < listaVehiculos.size(); i++) {
+				if (listaVehiculos.get(i).getPlaca().equals(idVehiculo)) {
+					listaVehiculos.remove(i);
+
+					System.out.println("Se elimino el vehiculo.");
+					// Persistencia.guardarCliente(listaClientes);
+					break;
+				} else {
+					System.out.println("no existe un vehiculo con esa id");
+
+				}
+
+			for (int indiceAdministrador = 0; indiceAdministrador < administradores.size(); indiceAdministrador++) {
+				Administrador adminAux = administradores.get(indiceAdministrador);
+				if (adminAux.getId().equalsIgnoreCase(administrador)
+						&& adminAux.getContrasenia().equalsIgnoreCase(contrasenia)) {
+					return adminAux;
+				}
+			}
+			return null;
+		}
+
+		public Administrador CargarAdministrador(String idUsuario) throws IOException {
+		}
+
+// -------------------------------------------------------------------------------------------------------
+																					// CRUD EMPLEADO
+
+		/**
+		 * metodo para agregar un empleado a la lista de empleados , validando si el
+		 * empleado ya existe segun su id
+		 *
+		 * @param cliente
+		 * @return
+		 */
+
+		public void agregarEmpleado( Empleado empleado) {
+			int bandera = 0;
+			for (int i = 0; i < listaEmpleados.size() && bandera == 0; i++) {
+				if (listaEmpleados.get(i).getId().equals(empleado.getId())) {
+					bandera = 1;
+				}
+			}
+			if (bandera == 0) {
+				listaEmpleados.add(empleado);
+				// Persistencia.guardarEmpleado(listaEmpleados);
+				System.out.println("Se agrego un nuevo empleado .");
+			} else {
+				System.out.println("Este empleado con esa id  ya existe");
+			}
+
+
+			ArrayList<Administrador> contenido = listaAdministradores;
+			Administrador administrador = new Administrador();
+			for (int i = 0; i < contenido.size(); i++) {
+				if (listaAdministradores.get(i).getId().equals(idUsuario)) {
+					administrador = listaAdministradores.get(i);
+					return administrador;
+				}
+			}
+			return null;
+		}
+		/*
+		 * Metoodo que permite buscar un administrador en especifico y retornarlo.
+		 */
+		public Administrador leerAdministrador(String id) {
+			if (id != null) {
+				for (Administrador c : listaAdministradores) {
+					if (c.getId().equals(id))
+						return c;
+				}
+			}
+			return null;
+		}
+
+		/**
+		 * metodo utilizado para actualizar un empleado , validando si este existe
+		 * segun su id
+		 *
+		 * @param nombre
+		 * @param edad
+		 * @param id
+		 * @param cargo
+		 * @param sueldo
+		 * @return
+		 */
+		public void actualizarEmpleado(Empleado empleadoActualizado) {
+
+			for (int i = 0; i < listaEmpleados.size(); i++) {
+				if (listaEmpleados.get(i).getId().equals(empleadoActualizado.getId())) {
+					listaEmpleados.set(i, empleadoActualizado);
+				} else {
+					// Si no se encontró el empleado con el id especificado
+					System.out.println("No se encontró el empleado con esa id: " + empleadoActualizado.getId());
+
+		// login empleado
+		public Empleado iniciarSesionEmpleado(String empleado, String contrasenia)
+				throws FileNotFoundException, IOException, EmpleadoExceptions {
+			Empleado empleadoIs = validarEmpleado(empleado, contrasenia);
+			if (empleadoIs != null) {
+				return empleadoIs;
+			} else {
+				throw new EmpleadoExceptions(" no existe el empleado " + empleado + "");
+			}
+
+		}
+
+		/*
+		 * Metodo que permite validar que los datos que ingreso el empleado en el
+		 * login, si sean verdaderos
+		 */
+		private Empleado validarEmpleado(String empleado, String contrasenia) throws FileNotFoundException, IOException {
+			ArrayList<Empleado> empleados = listaEmpleados;
+
+			for (int indiceEmpleado = 0; indiceEmpleado < empleados.size(); indiceEmpleado++) {
+				Empleado empleadoAux = empleados.get(indiceEmpleado);
+				if (empleadoAux.getNombre().equalsIgnoreCase(empleado)
+						&& empleadoAux.getId().equalsIgnoreCase(contrasenia)) {
+					return empleadoAux;
+				}
+			}
+			return null;
+		}
+		public Empleado cargarEmpleado(String idUsuario) throws IOException {
 
 				}
 			}

@@ -1,5 +1,16 @@
 package co.uniquindio.concesionario.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+
+public class LoginAdministradorController {
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +42,37 @@ public class LoginAdministradorController implements Initializable {
     private URL location;
 
     @FXML
+    private ImageView imgLogo;
+
+    @FXML
+    private JFXTextField txtUsuarioAdmin;
+
+    @FXML
+    private JFXPasswordField txtContraseniaAdmin;
+
+    @FXML
+    private JFXButton brnVolverAdmin;
+
+    @FXML
+    private JFXButton btnIngresarAdmin;
+
+    @FXML
+    void ingresarVentAdmin(ActionEvent event) {
+
+    }
+
+    @FXML
+    void volverVentPrincipal(ActionEvent event) {
+
+    }
+
+
+
+    @FXML
+    void initialize() {
+
+    }
+=======
     private TextField txtIdAdmin;
 
     @FXML
@@ -88,7 +130,7 @@ public class LoginAdministradorController implements Initializable {
 //			alert.setContentText("Los datos no coinciden, vuelva a intentarlo.");
 //			alert.showAndWait();
 			try {
-				throw new AdministradorException("administrador no existe \n                 o     \n contraseña incorrecta");
+				throw new AdministradorException("administrador no existe \n                 o     \n contraseÃ±a incorrecta");
 			} catch (AdministradorException e) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setHeaderText(null);

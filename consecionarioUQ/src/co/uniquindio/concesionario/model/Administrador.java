@@ -31,6 +31,20 @@ public class Administrador extends Persona implements Serializable {
 		super();
 	}
 
+	public Administrador() {
+		super();
+	}
+
+	public Administrador(String nombre, String edad, String id, double sueldo) {
+		super(nombre, edad, id);
+
+
+	}
+	// constructor login
+	public Administrador( String id, String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
 	/**
 	 * Getters and setter y metodo toString
 	 * @return
@@ -66,6 +80,7 @@ public class Administrador extends Persona implements Serializable {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
 
 
 
@@ -118,8 +133,8 @@ public class Administrador extends Persona implements Serializable {
 //            	listaEmpleados.set(i, empleadoActualizado);
 //            }
 //            else{
-//		        // Si no se encontró el empleado con el id especificado
-//		        System.out.println("No se encontró el empleado con esa id: " + empleadoActualizado.getId());
+//		        // Si no se encontrÃ³ el empleado con el id especificado
+//		        System.out.println("No se encontrÃ³ el empleado con esa id: " + empleadoActualizado.getId());
 //
 //	        }
 //        }
