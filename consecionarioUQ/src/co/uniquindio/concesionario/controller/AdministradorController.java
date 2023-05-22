@@ -4,11 +4,15 @@ package co.uniquindio.concesionario.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import co.uniquindio.concesionario.model.Empleado;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,9 +22,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class AdministradorController {
+public class AdministradorController  implements Initializable{
+	ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
+
 
     @FXML
     private ResourceBundle resources;
@@ -31,18 +38,18 @@ public class AdministradorController {
 
 
     @FXML
-    private TableColumn<?, ?> colIdentificacion;
+    private TableColumn<Empleado, String> colIdentificacion;
 
     @FXML
-    private TableColumn<?, ?> colEstado;
+    private TableColumn<Empleado, String> colEstado;
 
     @FXML
-    private TableColumn<?, ?> colSueldo;
+    private TableColumn<Empleado, Double> colSueldo;
 
 
 
     @FXML
-    private TableColumn<?, ?> colNombre;
+    private TableColumn<Empleado, String > colNombre;
 
     @FXML
     private Button btnCambiarEstado;
@@ -57,13 +64,13 @@ public class AdministradorController {
     private Button btnAgregar;
 
     @FXML
-    private TableColumn<?, ?> colCargo;
+    private TableColumn<Empleado, String> colCargo;
 
     @FXML
-    private TableView<?> tblEmpleados;
+    private TableView<Empleado> tblEmpleados;
 
     @FXML
-    private TableColumn<?, ?> colApellido;
+    private TableColumn<Empleado, String> colApellido;
 
     @FXML
     private Button btnEliminar;
@@ -179,6 +186,27 @@ public class AdministradorController {
 
     @FXML
     void abrirVentAgregarEmpleado(ActionEvent event) {
+    	try {
+
+    		FXMLLoader loader = new FXMLLoader(
+    				getClass().getResource("../view/agregarEmpleadoView.fxml"));
+    		Parent root = loader.load();
+
+
+
+    		Scene scene = new Scene(root);
+    		Stage stage = new Stage();
+
+    		stage.setScene(scene);
+    		stage.show();
+    		stage.setTitle("Lista Facturas");
+    		Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
+    		myStage.close();
+
+    	} catch (IOException e) {
+
+    	}
+
 
     }
 
@@ -198,6 +226,22 @@ public class AdministradorController {
     }
 
 	public void init() {
+
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		colCargo.setCellValueFactory( new PropertyValueFactory<>("cargo") );
+		colIdentificacion.setCellValueFactory( new PropertyValueFactory<>("identificacion") );
+    	colApellido.setCellValueFactory( new PropertyValueFactory<>("apellido") );
+    	colNombre.setCellValueFactory( new PropertyValueFactory<>("nombre") );
+    	colSueldo.setCellValueFactory( new PropertyValueFactory<>("sueldo") );
+    	colEstado.setCellValueFactory( new PropertyValueFactory<>("nombre") );
+
+
+    	ArrayList<Empleado> empleados  = modelFactoryController.concesionario.getListaEmpleados();
+
+    	tblEmpleados.setItems( FXCollections.observableList(empleados) );
 
 	}
 

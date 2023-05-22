@@ -79,6 +79,10 @@ public class ModelFactoryController {
 			return false;
 
 		}
+		public Empleado agregarEmpleado(Empleado empleado) throws IOException {
+			concesionario.agregarEmpleado(empleado);
+			return empleado;
+		}
 
 
 
