@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 
 import com.jfoenix.controls.JFXButton;
+import javax.xml.ws.Service.Mode;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class PrincipalController  implements Initializable{
@@ -33,6 +36,10 @@ public class PrincipalController  implements Initializable{
 
     @FXML
     private JFXButton btnAdministrador;
+    private Button btnEmpleado;
+
+    @FXML
+    private Button btnAdministrador;
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -53,7 +60,6 @@ public class PrincipalController  implements Initializable{
 
     		stage.setScene(scene);
     		stage.show();
-    		stage.setTitle("Car UQ");
     		Stage myStage = (Stage) this.btnAdministrador.getScene().getWindow();
     		myStage.close();
 
@@ -87,6 +93,7 @@ public class PrincipalController  implements Initializable{
     	} catch (IOException e) {
 
     	}
+
 
     }
 
